@@ -1,0 +1,457 @@
+1.1 Smart Contract 
+
+1.challenge One (Practice data Types)
+
+our Contract.t.sol is doing 
+
+assertEq(myContract.a(), true);
+assertEq(myContract.b(), false);
+
+ and it expects Contract.sol to have 
+ - A public variable a (set to true)
+
+ -A public variable b (set to false)
+ 
+#So the solution is 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    bool public a = true;
+    bool public b = false;
+}
+ and we get this response when Run Test
+
+   testBools() Test Passed
+
+@@@ for all challenges after this I will put only the solutions and the result I get when testing 
+
+2. challenge Two
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    uint8 public a = 100;       
+    uint16 public b = 300;       
+    uint256 public sum = a + b;  
+}
+
+
+Run Test Result 
+
+testA()  Test Passed
+testB()  Test Passed
+testSum()Test Passed
+
+3. challenge three
+
+solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+     int8 public a = 10;
+    int8 public b = -20;          
+    int16 public difference = abs(a - b);  
+
+    function abs(int16 x) internal pure returns (int16) {
+        return x >= 0 ? x : -x;}
+}  
+
+Run Test Result 
+
+testAbsoluteDifference()Test Passed
+testSigns()Test Passed
+
+4.challenge Four
+
+solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+	 bytes32 public msg1 = "Hello World";
+
+    string public msg2 = "Storage on a blockchain is expensive!";
+} 
+
+Run Test Result 
+
+testMsg1() Test Passed
+testMsg2Length() Test Passed
+
+5. challenge five
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    enum Foods { Apple, Pizza, Bagel, Banana }
+
+	Foods public food1 = Foods.Apple;
+    Foods public food2 = Foods.Pizza;
+    Foods public food3 = Foods.Bagel;
+    Foods public food4 = Foods.Banana;
+}
+
+Run Test Result
+
+testFoods() Test Passed
+
+1.2 Functions and Value Types
+
+1. Challenge one 
+
+solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    uint public x;
+
+    constructor(uint _x) {
+        x = _x;
+    }
+
+}
+
+Run Test Result 
+
+testConstructor() Test Passed
+
+2. Challenge Tow 
+solution 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    uint public x;
+
+    constructor(uint _x) {
+        x = _x;
+    }
+  function increment() external {
+        x += 1;
+    }
+}
+
+Run Test Result 
+testConstructor() Test Passed
+testIncrement() Test Passed
+
+3, Challenge Three
+
+Solution
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    uint public x;
+
+    constructor(uint _x) {
+        x = _x;
+    }
+  function increment() external {
+        x += 1;
+    }
+    
+    function add(uint _value) external view returns (uint) {
+        return x + _value;
+    }
+}
+
+Run Test Result 
+testAdd() Test Passed
+testConstructor() Test Passed
+testIncrement() Test Passed
+
+4. Challenge Four 
+Solution 
+
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.20;
+
+import "forge-std/console.sol";
+
+contract Contract {
+    function winningNumber(string calldata secretMessage) external returns(uint) {
+          console.log("Secret message:", secretMessage);
+          return 794;
+    }
+}  
+
+Run Test Result 
+
+Secret message: return the value 794 to win!
+testWin() Test Passed
+
+5.Challenge five
+solution
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+function double(uint _value) external pure returns (uint) {
+        return _value * 2;
+    }
+
+}
+
+Run Test result 
+testDouble() Test Passed
+
+6. Challenge Six 
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+function double(uint _value) external pure returns (uint) {
+        return _value * 2;
+    }
+    function double(uint a, uint b) external pure returns (uint, uint) {
+        return (a * 2, b * 2);
+    }
+
+}
+
+Run Test result 
+testDouble() Test Passed
+testDoubleWithTwoParams() Test Passed
+
+Module Two
+
+2.1 Sending Ether
+
+ 1. Challenge One
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+    
+}
+
+Run Test result 
+testConstructor() Test Passed
+
+2. Challenge Two
+Solution
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+    receive() external payable {}
+    function tip() public payable {
+        payable(owner).transfer(msg.value);
+    }
+}
+
+Run Test result
+testSendEther() Test Passed 
+
+3. Challenge Three
+Solution
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+    receive() external payable {}
+    function tip() public payable {
+        payable(owner).transfer(msg.value);
+    }
+}
+
+
+Run Test result
+testSendEther() Test Passed
+testTip() Test Passed
+
+4. Challenge Four
+Solution
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+    address public charity;
+    constructor(address _charity) {
+        owner = msg.sender;
+        charity = _charity;
+    }
+    receive() external payable {}
+
+    function tip() public payable {
+        payable(owner).transfer(msg.value);
+    }
+
+    function donate() public {
+        uint balance = address(this).balance;
+        payable(charity).transfer(balance);
+    }
+}
+
+Run Test result
+testDonate() Test Passed
+testSend() Test Passed
+
+
+5. Challenge five
+Solution
+
+/ SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+    address public charity;
+
+    constructor(address _charity) {
+        owner = msg.sender;
+        charity = _charity;
+    }
+
+    receive() external payable {}
+
+    function tip() public payable {
+        payable(owner).transfer(msg.value);
+    }
+
+    function donate() public {
+        uint balance = address(this).balance;
+        payable(charity).transfer(balance);
+
+
+        selfdestruct(payable(charity));
+    }
+}
+
+Run Test result
+
+testDestruction() Test Passed
+testDonate() Test Passed
+
+
+6. Challenge Six
+Solution
+
+2.2 LEARNING REVERT
+
+1.Challenge One 
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+       constructor() payable {
+        require(msg.value >= 1 ether, "You must send at least 1 ether");
+    }
+}
+
+Run Test result
+testFailure() Test Passed
+testSuccess() Test Passed
+
+1. Challenge Two
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    address public owner;
+
+    constructor() payable {
+        require(msg.value >= 1 ether, "You must send at least 1 ether");
+        owner = msg.sender;
+    }
+
+    function withdraw() public {
+        require(msg.sender == owner, "Only the deployer can withdraw");
+        payable(owner).transfer(address(this).balance);
+    }
+}
+
+Run Test result
+testAsNotOwner() Test Passed
+testAsOwner() Test Passed
+
+1. Challenge Three
+
+Solution 
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Contract {
+    uint configA;
+    uint configB;
+    uint configC;
+    address owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function setA(uint _configA) public onlyOwner {
+        configA = _configA;
+    }
+
+    function setB(uint _configB) public onlyOwner {
+        configB = _configB;
+    }
+
+    function setC(uint _configC) public onlyOwner {
+        configC = _configC;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+}
+
+
+Run Test result
+
+testANotOwner()Test Passed
+testAWithOwner() Test Passed
+testBNotOwner() Test Passed
+testBWithOwner()Test Passed
+testCNotOwner() Test Passed
+testCWithOwner() Test Passed

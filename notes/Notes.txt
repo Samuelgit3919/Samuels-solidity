@@ -1,0 +1,31 @@
+       Learn Solidity
+
+Module One Solidity Introduction
+1.1 Smart Contracts Overview
+
+A smart contract is a self-executing program stored on a blockchain that automatically enforces and executes the terms of an agreement without requiring a trusted third party.
+
+1.2 Value Types 
+
+In Solidity, value types are the basic data types that are copied when assigned to another variable or passed to a function
+
+Type	                 Description
+bool	                 Boolean type, true or false
+uint	                 Unsigned integer (alias for uint256)
+uint8–uint256	         Unsigned integers in steps of 8 bits (e.g., uint8, uint16, ..., uint256)
+int	                 Signed integer (alias for int256)
+int8–int256	         Signed integers in steps of 8 bits
+address	                 20-byte Ethereum address
+address payable  	 Same as address, but with .transfer() and .send() allowed
+bytes1–bytes32	         Fixed-size byte arrays (e.g., bytes1, bytes2, ..., bytes32)
+enum	                 User-defined type with finite named constants
+function	         Type representing internal or external functions
+
+-Storage Variables
+
+Storage variables are state variables declared outside of functions and are permanently stored on the blockchain
+
+-Functions 
+
+Function in Solidity define the behavior of your smart contract — how it responds to interactions, modifies state, returns data, and others.
+
